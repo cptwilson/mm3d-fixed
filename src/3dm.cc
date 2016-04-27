@@ -43,6 +43,7 @@
 #include "transimp.h"
 
 
+#if 0
 #include <signal.h>
 
 void segfault_handler( int sig )
@@ -50,6 +51,7 @@ void segfault_handler( int sig )
    fprintf( stderr, "Segfault.  Exiting...\n" );
    exit( 0 );
 }
+#endif
 
 int free_memory()
 {
@@ -62,7 +64,9 @@ int main( int argc, char * argv[] )
    
    log_profile_init( "profile_data.txt" );
 
+#if 0
    signal( SIGSEGV, segfault_handler );
+#endif
 
    init_sysconf();
    transimp_install_translator();
