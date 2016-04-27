@@ -233,7 +233,7 @@ EOF
 
 int main( int argc, char **argv )
 {
-   lua_State * L = lua_open();
+   lua_State * L = luaL_newstate();
    //luaopen_math( L );
    lua_close( L );
    return( 0 );
@@ -402,7 +402,7 @@ EOF
 
 int main( int argc, char **argv )
 {
-   lua_State * L = lua_open();
+   lua_State * L = luaL_newstate();
    luaopen_math( L );
    lua_close( L );
    return( 0 );
