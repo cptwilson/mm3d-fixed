@@ -1,8 +1,8 @@
 PLUGINS =  \
 			  imtex.so \
 
-LFLAGS = -O2 -Wall -lImlib2
-CFLAGS = -O2 -Wall -DMM3D_EDIT -I../../src -I../../src/libmm3d -I../../src/mm3dcore -I../.. -DPLUGIN
+LFLAGS = -g -Wall
+CPPFLAGS = -fPIC -DMM3D_EDIT -I../../src -I../../src/libmm3d -I../../src/mm3dcore -I../.. -DPLUGIN
 
 # Mac OS X flags. Uncomment the following line to compile on Mac OS X
 #LFLAGS = -O2 -Wall -lImlib2 -undefined suppress -bundle -flat_namespace
@@ -10,10 +10,10 @@ CFLAGS = -O2 -Wall -DMM3D_EDIT -I../../src -I../../src/libmm3d -I../../src/mm3dc
 all: ${PLUGINS}
 	
 %.o: %.cc
-	g++ ${CFLAGS} -c $<
+	g++ ${CPPFLAGS} ${CXXFLAGS} -c $<
 
 %.so: %.o
-	g++ ${LFLAGS} -shared -o $*.so $<
+	g++ ${LFLAGS} -shared -o $*.so $< -lImlib2
 
 clean:
 	rm -rf *.o *.so core core.*
